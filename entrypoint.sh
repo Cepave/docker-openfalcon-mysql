@@ -102,6 +102,8 @@ fi
 
 "$@" &
 
+set +e
+
 sleep 10
 
 mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/graph-db-schema.sql

@@ -6,7 +6,7 @@ MAINTAINER minimum@cepave.com
 RUN \
   apt-get update && \
   apt-get install -y git && \
-  git clone https://github.com/open-falcon/scripts.git && \
+  git clone https://github.com/Cepave/scripts.git && \
   apt-get remove -y git && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
