@@ -111,5 +111,6 @@ mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/
 mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/portal-db-schema.sql
 mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/links-db-schema.sql
 mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/uic-db-schema.sql
+mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/grafana-db-schema.sql
 
 tail -f /var/log/mysql/error.log
