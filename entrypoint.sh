@@ -100,6 +100,12 @@ if [ "$1" = 'mysqld' ]; then
 	chown -R mysql:mysql "$DATADIR"
 fi
 
+/etc/init.d/mysql status
+if [ $? -eq 3 ];then
+    echo "MySQL is not running, skip the following initialization."
+    exit 3
+fi
+
 "$@" &
 
 set +e
