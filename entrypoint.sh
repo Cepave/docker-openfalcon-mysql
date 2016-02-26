@@ -100,16 +100,9 @@ if [ "$1" = 'mysqld' ]; then
 	chown -R mysql:mysql "$DATADIR"
 fi
 
-/etc/init.d/mysql status
-if [ $? -eq 3 ];then
-    echo "MySQL is not running, skip the following initialization."
-    exit 3
-fi
-
 "$@" &
 
 set +e
-
 sleep 10
 
 mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/graph-db-schema.sql
@@ -119,4 +112,10 @@ mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/
 mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/uic-db-schema.sql
 mysql -h localhost -u root --password=$MYSQL_ROOT_PASSWORD < /scripts/db_schema/grafana-db-schema.sql
 
-tail -f /var/log/mysql/error.log
+/etc/init.d/mysql status
+if [ $? -eq 3 ];then
+    echo "MySQL is not running, skip the following initialization."
+    exit 3
+else
+    tail -f /var/log/mysql/error.log
+fi
